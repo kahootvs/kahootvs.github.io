@@ -59,19 +59,32 @@
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
+          window.location.replace("https://kahoot.icu/error");
         }
         return response.json();
       })
       .then(data => {
-        // good
-        console.log(data);
+        // Extract correct answers
+        const correctAnswers = [];
+        
+        data.answers.forEach(answer => {
+          const question = answer.question;
+          question.choices.forEach(choice => {
+            if (choice.correct) {
+              correctAnswers.push(choice.answer);
+            }
+          });
+        });
+
+        // Log the correct answers in order
+        correctAnswers.forEach((answer, index) => {
+          console.log(`${index + 1}. ${answer}`);
+        });
       })
       .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
+        window.location.replace("https://kahoot.icu/error");
       });
   } else {
-    //console.error('No id parameter found in the URL.');
     window.location.replace("https://kahoot.icu/error");
   }
 </script>
