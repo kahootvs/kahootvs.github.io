@@ -73,12 +73,12 @@
           // Check if the question has a choiceRange for slider questions
           if (question.choiceRange) {
             // Use the correct value from choiceRange
-            correctAnswers.push(question.choiceRange.correct);
+            correctAnswers.push({ title: question.title, answer: question.choiceRange.correct });
           } else {
             // For regular questions, check the choices
             question.choices.forEach(choice => {
               if (choice.correct) {
-                correctAnswers.push(choice.answer);
+                correctAnswers.push({ title: question.title, answer: choice.answer });
               }
             });
           }
@@ -91,9 +91,9 @@
         answersList.innerHTML = '';
 
         // Append each correct answer as a new list item
-        correctAnswers.forEach((answer, index) => {
+        correctAnswers.forEach((item, index) => {
           const listItem = document.createElement('li');
-          listItem.innerHTML = `${index + 1}. ${answer}`; // Use innerHTML to allow HTML rendering
+          listItem.innerHTML = `${index + 1}. ${item.title}<br>${item.answer}`; // Use innerHTML to allow HTML rendering
           answersList.appendChild(listItem);
         });
       })
