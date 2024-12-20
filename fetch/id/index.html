@@ -39,7 +39,7 @@
 <body>
 <div align="center">
   <h1>🍾 Sprite X</h1>
-  <ul>
+  <ul id="answersList">
     <li>Getting answers..</li>
   </ul>
   <p>For testing local development purposes only.</p>
@@ -76,9 +76,17 @@
           });
         });
 
-        // Log the correct answers in order
+        // Get the answers list element
+        const answersList = document.getElementById('answersList');
+
+        // Clear the initial "Getting answers.." message
+        answersList.innerHTML = '';
+
+        // Append each correct answer as a new list item
         correctAnswers.forEach((answer, index) => {
-          console.log(`${index + 1}. ${answer}`);
+          const listItem = document.createElement('li');
+          listItem.textContent = `${index + 1}. ${answer}`;
+          answersList.appendChild(listItem);
         });
       })
       .catch(error => {
