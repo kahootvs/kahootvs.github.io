@@ -61,25 +61,6 @@ h1, p {
   color: #F6F3EA;
 }
 
-#loader {
-  width: 12px;
-  height: 12px;
-  border: 16px solid white;
-  border-radius: 50%;
-  border-top: 16px solid black;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 </style>
 <script>
 function redirectToFetch() {
@@ -101,7 +82,7 @@ window.onload = redirectToFetch;
 <h1>🍾 Sprite X</h1>
 
 <ul>
-  <li>Fetching..<br><div id="loader"></div>
+  <li>Fetching..
 </li>
 </ul>
 <p>Answers may take some time to load depending on the size of your quiz.</p>
