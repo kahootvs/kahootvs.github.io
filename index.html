@@ -4,7 +4,7 @@
 <title>Kahoot!</title>
 <link rel="icon" href="https://kahoot.it/favicon.ico">
 <style>
-body {
+body, input, button {
   background-color: #121212;
 }
 
@@ -12,6 +12,27 @@ ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
   grid-gap: 1rem;
+}
+
+input {
+    border-radius: 8px;
+    height: 40%;
+    border: none;
+}
+
+button {
+    border-radius: 8px;
+    height: 40%;
+    color: #F6F3EA;
+    font-family: Avenir, Heveltica, Arial, san-serif;
+    font-weight: bold;
+    border: none;
+}
+
+::placeholder {
+   text-align: center; 
+   font-family: Avenir, Heveltica, Arial, san-serif;
+   font-weight: bold;
 }
 
 ul {
@@ -29,19 +50,30 @@ li {
 }
 
 h1, p {
-font-family: Avenir, Heveltica, Arial, san-serif;
+  font-family: Avenir, Heveltica, Arial, san-serif;
   font-weight: bold;
-  
   color: #F6F3EA;
 }
 </style>
+<script>
+function fetchAnswers() {
+    var pin = document.getElementById("pin").value;
+    if (pin === "") {
+        alert("Please enter a PIN.");
+    } else {
+        window.location.href = "https://kahoot.icu/fetch/pin?pin=" + pin;
+    }
+}
+</script>
 </head>
 <body>
 <div align="center">
-<h1>Kahoot Answers</h1>
+<h1>🍾 Sprite X</h1>
 
-<p>No challenge loaded. Replace kahoot.it with kahoot.icu while on a challenge page.</p>
+<ul>
+  <li>Enter PIN:<br><input type="number" id="pin" placeholder="Live games only"></input><br><button onclick="fetchAnswers()">Fetch Answers</button></li>
+</ul>
+<p>Alternatively, simply join a Kahoot like normal, copy the URL, and replace .it with .icu</p>
 </div>
 </body>
-
 </html>
