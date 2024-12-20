@@ -2,51 +2,83 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kahoot!</title>
+  <link rel="icon" href="https://kahoot.it/favicon.ico">
+  <style>
+    body {
+      background-color: #121212;
+    }
 
-<title>Kahoot!</title>
-<link rel="icon" href="https://kahoot.it/favicon.ico">
-<style>
-body {
-  background-color: #121212;
-}
+    ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      grid-gap: 1rem;
+    }
 
-ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-  grid-gap: 1rem;
-}
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #F6F3EA;
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+    li {
+      padding: 1em;
+      background: #46178f;
+    }
 
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  color: #F6F3EA;
-  font-family: Avenir, Heveltica, Arial, san-serif;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-li {
-  padding: 1em;
-  background: #46178f;
-}
-
-h1, p {
-font-family: Avenir, Heveltica, Arial, san-serif;
-  font-weight: bold;
-  
-  color: #F6F3EA;
-}
-</style>
+    h1, p {
+      font-family: Avenir, Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      color: #F6F3EA;
+    }
+  </style>
 </head>
 <body>
 <div align="center">
-<h1>🍾 Sprite X</h1>
-
-<ul>
-  <li>-</li>
-</ul>
-<p>For testing local development purposes only.</p>
+  <h1>🍾 Sprite X</h1>
+  <ul>
+    <li>Getting answers..</li>
+  </ul>
+  <p>For testing local development purposes only.</p>
 </div>
-</body>
 
+<script>
+  // Function to get the query parameter by name
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  // Get the 'id' parameter from the URL
+  const id = getQueryParam('id');
+
+  // If 'id' is present, make the request
+  if (id) {
+    const url = `https://kahoot.it/rest/challenges/${id}/answers`;
+
+    // Make the fetch request
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          window.location.replace("https://kahoot.icu/error");
+          // code wasnt ok
+        }
+        return response.json(); // or response.json() if the response is JSON
+      })
+      .then(data => {
+        // good
+        console.log(data); // Log the response data to the console
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  } else {
+    // no id in url ?
+    window.location.replace("https://kahoot.icu/error");
+  }
+</script>
+</body>
 </html>
