@@ -53,7 +53,7 @@
   const id = getQueryParam('id');
 
   if (id) {
-    const proxyUrl = 'https://crossorigin.me/';
+    const proxyUrl = 'https://corsproxy.io/?url=';
     const url = `${proxyUrl}https://kahoot.it/rest/challenges/${id}/answers`;
 
     fetch(url)
