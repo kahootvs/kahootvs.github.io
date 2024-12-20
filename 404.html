@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kahoot!</title>
+<link rel="icon" href="https://kahoot.it/favicon.ico">
+<style>
+body, input, button {
+  background-color: #121212;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  grid-gap: 1rem;
+}
+
+input {
+    border-radius: 8px;
+    height: 40%;
+    border: none;
+}
+
+button {
+    border-radius: 8px;
+    height: 40%;
+    color: #F6F3EA;
+    font-family: Avenir, Heveltica, Arial, san-serif;
+    font-weight: bold;
+    border: none;
+}
+
+::placeholder {
+   text-align: center; 
+   font-family: Avenir, Heveltica, Arial, san-serif;
+   font-weight: bold;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #F6F3EA;
+  font-family: Avenir, Heveltica, Arial, san-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+li {
+  padding: 1em;
+  background: #46178f;
+}
+
+h1, p {
+  font-family: Avenir, Heveltica, Arial, san-serif;
+  font-weight: bold;
+  color: #F6F3EA;
+}
+
+#loader {
+  width: 12px;
+  height: 12px;
+  border: 16px solid white;
+  border-radius: 50%;
+  border-top: 16px solid black;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<script>
+function redirectToFetch() {
+    var currentUrl = window.location.href;
+    if (currentUrl.includes('/challenge/')) {
+        var uniqueId = currentUrl.split('/challenge/').pop();
+        var newUrl = "https://kahoot.icu/fetch/id?id=" + uniqueId;
+        window.location.href = newUrl;
+    } else {
+        window.location.href = "https://kahoot.icu/error";
+    }
+}
+
+window.onload = redirectToFetch;
+</script>
+</head>
+<body>
+<div align="center">
+<h1>🍾 Sprite X</h1>
+
+<ul>
+  <li>Fetching..<br><div id="loader"></div>
+</li>
+</ul>
+<p>Answers may take some time to load depending on the size of your quiz.</p>
+</div>
+</body>
+</html>

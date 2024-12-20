@@ -2,12 +2,19 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="2; url=https://kahoot.icu/" />
 
 <title>Kahoot!</title>
 <link rel="icon" href="https://kahoot.it/favicon.ico">
 <style>
 body, input, button {
   background-color: #121212;
+}
+
+ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  grid-gap: 1rem;
 }
 
 input {
@@ -32,8 +39,6 @@ button {
 }
 
 ul {
-  display: flex; /* Change to flexbox */
-  justify-content: center; /* Center items horizontally */
   margin: 0;
   padding: 0;
   list-style: none;
@@ -41,13 +46,14 @@ ul {
   font-family: Avenir, Heveltica, Arial, san-serif;
   font-weight: bold;
   font-size: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
-
 li {
   padding: 1em;
   background: #46178f;
-  text-align: center; /* Center text inside the li */
-  border-radius: 8px; /* Optional: add border radius for better appearance */
 }
 
 h1, p {
@@ -56,25 +62,17 @@ h1, p {
   color: #F6F3EA;
 }
 </style>
-<script>
-function fetchAnswers() {
-    var pin = document.getElementById("pin").value;
-    if (pin === "") {
-        alert("Please enter a PIN.");
-    } else {
-        window.location.href = "https://kahoot.icu/fetch/pin?pin=" + pin;
-    }
-}
-</script>
+
 </head>
 <body>
 <div align="center">
 <h1>🍾 Sprite X</h1>
 
 <ul>
-  <li>Enter PIN:<br><input type="number" id="pin" placeholder="Live games only"><br><button onclick="fetchAnswers()">Fetch Answers</button></li>
+  <li>Error fetching, redirecting..<br>
+</li>
 </ul>
-<p>Alternatively, simply join a Kahoot like normal, copy the URL, and replace .it with .icu</p>
+<p>Make sure this is a CHALLENGE (non-timed game) and not a LIVE game.</p>
 </div>
 </body>
 </html>
