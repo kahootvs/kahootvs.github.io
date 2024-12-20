@@ -44,39 +44,34 @@
   </ul>
   <p>For testing local development purposes only.</p>
 </div>
-
 <script>
-  // Function to get the query parameter by name
   function getQueryParam(name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(name);
   }
 
-  // Get the 'id' parameter from the URL
   const id = getQueryParam('id');
 
-  // If 'id' is present, make the request
   if (id) {
-    const url = `https://kahoot.it/rest/challenges/${id}/answers`;
+    const proxyUrl = 'https://crossorigin.me/';
+    const url = `${proxyUrl}https://kahoot.it/rest/challenges/${id}/answers`;
 
-    // Make the fetch request
     fetch(url)
       .then(response => {
         if (!response.ok) {
-          window.location.replace("https://kahoot.icu/error");
-          // code wasnt ok
+          throw new Error('Network response was not ok ' + response.statusText);
         }
-        return response.json(); // or response.json() if the response is JSON
+        return response.json();
       })
       .then(data => {
         // good
-        console.log(data); // Log the response data to the console
+        console.log(data);
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
       });
   } else {
-    // no id in url ?
+    //console.error('No id parameter found in the URL.');
     window.location.replace("https://kahoot.icu/error");
   }
 </script>
