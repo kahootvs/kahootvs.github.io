@@ -84,6 +84,12 @@
           }
         });
 
+        // Function to convert fraction format
+        function convertFraction(answer) {
+          const fractionRegex = /\\frac{(\d+)}{(\d+)}/g;
+          return answer.replace(fractionRegex, '<sup>$1</sup>&frasl;<sub>$2</sub>');
+        }
+
         // Get the answers list element
         const answersList = document.getElementById('answersList');
 
@@ -92,8 +98,9 @@
 
         // Append each correct answer as a new list item
         correctAnswers.forEach((item, index) => {
+          const formattedAnswer = convertFraction(item.answer);
           const listItem = document.createElement('li');
-          listItem.innerHTML = `${index + 1}. ${item.title}<br><br>Answer: ${item.answer}`; // Use innerHTML to allow HTML rendering
+          listItem.innerHTML = `${index + 1}. ${item.title}<br><br>Answer: ${formattedAnswer}`; // Use innerHTML to allow HTML rendering
           answersList.appendChild(listItem);
         });
       })
