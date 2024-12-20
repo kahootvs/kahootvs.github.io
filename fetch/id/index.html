@@ -85,7 +85,7 @@
         // Append each correct answer as a new list item
         correctAnswers.forEach((answer, index) => {
           const listItem = document.createElement('li');
-          listItem.textContent = `${index + 1}. ${answer}`;
+          listItem.innerHTML = `${index + 1}. ${answer}`; // Use innerHTML to allow HTML rendering
           answersList.appendChild(listItem);
         });
       })
